@@ -1,9 +1,8 @@
 import React from 'react';
-import foodJson from '../foods.json';
 
 import { Card, Col, Button } from 'antd';
 
-function FoodBox(food) {
+function FoodBox({ food, removeFood }) {
   return (
     <Col>
       <Card title={food.name} style={{ width: 230, height: 300, margin: 10 }}>
@@ -11,9 +10,12 @@ function FoodBox(food) {
         <p>Calories: {food.calories}</p>
         <p>Servings: {food.servings}</p>
         <p>
-          <b>Total Calories: FOOD_CALORIES * FOOD_SERVINGS </b> kcal
+          <b>Total Calories: {food.servings * food.calories}</b>
         </p>
-        <Button type="primary"> Delete </Button>
+        <Button type="primary" onClick={() => removeFood(food.name)}>
+          {' '}
+          Delete{' '}
+        </Button>
       </Card>
     </Col>
   );
